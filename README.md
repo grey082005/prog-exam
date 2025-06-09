@@ -1,6 +1,6 @@
 # prog-exam
 
-This is a Python project for my Programming II final. It reads files using generators, uses custom decorators, and tests everything using pytest.
+ Programming II final. It reads files using generators, uses custom decorators, and tests everything using pytest.
 
 ## Features
 - File reading with generators
