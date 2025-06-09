@@ -1,28 +1,22 @@
-<<<<<<< HEAD
-from decorators import decor
+# main.py
 
-@decor("green")
-def welcome():
-    print("Welcome to the File Handler Program!")
-
-welcome()
-
-=======
 from file_stuff import FileCombiner
 from decorators import color_text
 
-@color_text
-def print_msg(msg):
+@color_text("green")
+def show_message(msg):
     return msg
 
-if __name__ == "__main__":
+def main():
     file1 = FileCombiner("file1.txt")
     file2 = FileCombiner("file2.txt")
+    
+    combined = file1 + file2  # uses __add__
+    print(show_message(f"Files combined into: {combined.filename}"))
 
-    combined = file1 + file2
-
-    print(print_msg("Files combined! Contents below:\n"))
-
+    print(">>> Combined file contents:")
     for line in combined.read_lines():
         print(line)
->>>>>>> ce8ba7d9c905e0742be7865e558e2fa2e255d720
+
+if __name__ == "__main__":
+    main()

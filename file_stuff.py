@@ -1,64 +1,34 @@
-<<<<<<< HEAD
-import os
+# file_stuff.py
 
-class FileHandler:
-    def __init__(self, filename):
-        self._filename = filename
-
-    @property
-    def filename(self):
-        return self._filename
-
-    @filename.setter
-    def filename(self, value):
-        self._filename = value
-
-    def read_lines(self):
-        with open(self._filename, 'r') as file:
-            for line in file:
-                yield line.strip()
-
-    # ✅ Static method: check if file exists
-    @staticmethod
-    def file_exists(path):
-        return os.path.exists(path)
-
-    # ✅ Class method: create object from path
-    @classmethod
-    def from_path(cls, path):
-        return cls(path)
-
-    # ✅ String representation
-    def __str__(self):
-        return f"FileHandler('{self._filename}')"
-
-    # ✅ Add method: combine contents of two files into a new file
-    def __add__(self, other):
-        new_file = "combined.txt"
-        with open(self._filename, 'r') as f1, open(other.filename, 'r') as f2, open(new_file, 'w') as fout:
-            fout.write(f1.read())
-            fout.write("\n")
-            fout.write(f2.read())
-        return FileHandler(new_file)
-=======
 class SimpleReader:
     def __init__(self, filename):
         self.filename = filename
 
     def read_lines(self):
-        with open(self.filename, 'r') as file:
-            for line in file:
+        # Generator that yields each line without newline
+        with open(self.filename, 'r') as f:
+            for line in f:
                 yield line.strip()
 
     def greet(self):
+        # Simple method to test with pytest
         return "Hi from SimpleReader!"
 
 class FileCombiner(SimpleReader):
     def __add__(self, other):
-        new_file = "combined.txt"
-        with open(self.filename, 'r') as f1, open(other.filename, 'r') as f2, open(new_file, 'w') as out:
+        # Use + to combine two files into combined.txt
+        output = "combined.txt"
+        with open(self.filename, 'r') as f1, open(other.filename, 'r') as f2, open(output, 'w') as out:
             out.write(f1.read())
             out.write("\n")
             out.write(f2.read())
-        return FileCombiner(new_file)
->>>>>>> ce8ba7d9c905e0742be7865e558e2fa2e255d720
+        return FileCombiner(output)
+
+    def combine_multiple(self, *others):
+        # Append multiple files to this one
+        with open(self.filename, 'a') as out:
+            for other in others:
+                with open(other.filename, 'r') as f:
+                    out.write("\n")
+                    out.write(f.read())
+

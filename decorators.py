@@ -1,26 +1,17 @@
-<<<<<<< HEAD
-# ANSI color codes dictionary
-COLORS = {
-    "red": "\033[91m",
-    "green": "\033[92m",
-    "blue": "\033[94m",
-    "yellow": "\033[93m",
-    "end": "\033[0m"
-}
+# decorators.py
 
-# Custom decorator that takes a color
-def decor(color):
+def color_text(color):
+    # Decorator factory for ANSI color codes
     def decorator(func):
         def wrapper(*args, **kwargs):
-            print(COLORS.get(color, ""), end="")
+            colors = {
+                "red": "\033[91m",
+                "green": "\033[92m",
+                "yellow": "\033[93m",
+                "blue": "\033[94m",
+                "reset": "\033[0m"
+            }
             result = func(*args, **kwargs)
-            print(COLORS["end"], end="")  # Reset color
-            return result
+            return f"{colors.get(color, '')}{result}{colors['reset']}"
         return wrapper
     return decorator
-=======
-def color_text(func):
-    def wrapper(msg):
-        return f"\033[92m{func(msg)}\033[0m"  # Green text
-    return wrapper
->>>>>>> ce8ba7d9c905e0742be7865e558e2fa2e255d720
