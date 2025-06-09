@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ANSI color codes dictionary
 COLORS = {
     "red": "\033[91m",
@@ -17,3 +18,9 @@ def decor(color):
             return result
         return wrapper
     return decorator
+=======
+def color_text(func):
+    def wrapper(msg):
+        return f"\033[92m{func(msg)}\033[0m"  # Green text
+    return wrapper
+>>>>>>> ce8ba7d9c905e0742be7865e558e2fa2e255d720
