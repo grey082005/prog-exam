@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 # prog-exam
-ong
-## sub header
-=======
-# prog-exam
-ong
-## sub header
->>>>>>> ce8ba7d9c905e0742be7865e558e2fa2e255d720
+
+This is a Python project for my Programming II final. It reads files using generators, uses custom decorators, and tests everything using pytest.
+
+## Features
+- File reading with generators
+- Custom decorators to color text (using ANSI)
+- Magic methods `__add__`, `__str__`, `@classmethod`, `@staticmethod`
+- Tests with Pytest
